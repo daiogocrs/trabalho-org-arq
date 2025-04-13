@@ -1,47 +1,35 @@
 function converter(input = 0, base_origem, base_final) {
-  let resultado = 0;
-  let passos = "";
+  let decimal = 0;
+  let passosDecimal = "";
 
-  switch (base_origem) {
-    case 2:
-      resultado = toDecimal(input, 2);
-      passos = mostrarPassos(input, 2);
-      console.log(`\nBIN(${input}) => DEC(${resultado}) \n` + passos + "\n");
-      break;
-
-    case 8:
-      resultado = toDecimal(input, 8);
-      passos = mostrarPassos(input, 8);
-      console.log(`\nOCT(${input}) => DEC(${resultado}) \n` + passos + "\n");
-      break;
-
-    case 10:
-      resultado = parseInt(input, 10);
-      console.log(`\nDEC(${input}) => DEC(${resultado})\n`);
-      break;
-
-    case 16:
-      resultado = toDecimal(input, 16);
-      passos = mostrarPassos(input, 16);
-      console.log(`\nHEX(${input}) => DEC(${resultado}) \n` + passos + "\n");
-      break;
+  if (base_origem !== 10) {
+    decimal = paraDecimal(input, base_origem);
+    passosDecimal = mostrarDecimal(input, base_origem);
+    console.log(`\n${label(base_origem)} (${input}) => DEC(${decimal})`);
+    console.log(passosDecimal + "\n");
+  } else {
+    decimal = parseInt(input, 10);
+    console.log(`\nDEC(${input}) => DEC(${decimal})\n`);
   }
+
+  let resultado = paraNovaBase(decimal, base_final, true);
+  console.log(`\n=> ${label(base_final)}(${resultado})`);
 }
 
-function toDecimal(input, base) {
-  let resultado = 0;
+function paraDecimal(input, base) {
+  let decimal = 0;
   let potencia = 0;
 
   for (let i = input.length - 1; i >= 0; i--) {
     let valor = parseInt(input[i], base);
-    resultado += valor * Math.pow(base, potencia);
+    decimal += valor * Math.pow(base, potencia);
     potencia++;
   }
-  console.log(resultado);
-  return resultado;
+
+  return decimal;
 }
 
-function mostrarPassos(input, base) {
+function mostrarDecimal(input, base) {
   let passos = "";
   let potencia = input.length - 1;
 
@@ -55,4 +43,37 @@ function mostrarPassos(input, base) {
   return passos;
 }
 
-converter("ABCDEF", 16, 1226);
+function paraNovaBase(input, base, mostrarPassos = false) {
+  let resultado = "";
+  const hexDigits = "0123456789ABCDEF";
+  let quociente = input;
+
+  do {
+    let resto = quociente % base;
+    if (mostrarPassos) {
+      console.log(`${quociente} / ${base} = ${Math.floor(quociente / base)}, resto = ${resto}`);
+    }
+    let tmp = base === 16 ? hexDigits[resto] : resto;
+    resultado = tmp + resultado;
+    quociente = Math.floor(quociente / base);
+  } while (quociente > 0);
+
+  return resultado;
+}
+
+function label(base) {
+  switch (base) {
+    case 2:
+      return "BIN";
+    case 8:
+      return "OCT";
+    case 10:
+      return "DEC";
+    case 16:
+      return "HEX";
+    default:
+      return `BASE${base}`;
+  }
+}
+
+converter("ABCDF", 16, 2);
