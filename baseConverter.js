@@ -1,19 +1,31 @@
+function converterClick() {
+  const input = document.getElementById("input").value.toUpperCase();
+  const base_origem = parseInt(document.getElementById("baseOrigem").value);
+  const base_final = parseInt(document.getElementById("baseDestino").value);
+
+  document.getElementById("resultado").textContent = ""; 
+  converter(input, base_origem, base_final);
+}
+
 function converter(input = 0, base_origem, base_final) {
   let decimal = 0;
   let passosDecimal = "";
+  const output = [];
 
   if (base_origem !== 10) {
     decimal = paraDecimal(input, base_origem);
     passosDecimal = mostrarDecimal(input, base_origem);
-    console.log(`\n${label(base_origem)} (${input}) => DEC(${decimal})`);
-    console.log(passosDecimal + "\n");
+    output.push(`\n${label(base_origem)}(${input}) => DEC(${decimal})`);
+    output.push(passosDecimal + "\n");
   } else {
     decimal = parseInt(input, 10);
-    console.log(`\nDEC(${input}) => DEC(${decimal})\n`);
+    output.push(`\nDEC(${input}) => DEC(${decimal})\n`);
   }
 
-  let resultado = paraNovaBase(decimal, base_final, true);
-  console.log(`\n=> ${label(base_final)}(${resultado})`);
+  output.push(`Passos para converter DEC(${decimal}) para ${label(base_final)}:`);
+  let resultado = paraNovaBase(decimal, base_final, true, output);
+  output.push(`\n=> ${label(base_final)}(${resultado})`);
+  document.getElementById("resultado").textContent = output.join("\n");
 }
 
 function paraDecimal(input, base) {
@@ -43,7 +55,7 @@ function mostrarDecimal(input, base) {
   return passos;
 }
 
-function paraNovaBase(input, base, mostrarPassos = false) {
+function paraNovaBase(input, base, mostrarPassos = false, output = []) {
   let resultado = "";
   const hexDigits = "0123456789ABCDEF";
   let quociente = input;
@@ -51,7 +63,7 @@ function paraNovaBase(input, base, mostrarPassos = false) {
   do {
     let resto = quociente % base;
     if (mostrarPassos) {
-      console.log(`${quociente} / ${base} = ${Math.floor(quociente / base)}, resto = ${resto}`);
+      output.push(`${quociente} / ${base} = ${Math.floor(quociente / base)}, resto = ${resto}`);
     }
     let tmp = base === 16 ? hexDigits[resto] : resto;
     resultado = tmp + resultado;
@@ -63,17 +75,10 @@ function paraNovaBase(input, base, mostrarPassos = false) {
 
 function label(base) {
   switch (base) {
-    case 2:
-      return "BIN";
-    case 8:
-      return "OCT";
-    case 10:
-      return "DEC";
-    case 16:
-      return "HEX";
-    default:
-      return `BASE${base}`;
+    case 2: return "BIN";
+    case 8: return "OCT";
+    case 10: return "DEC";
+    case 16: return "HEX";
+    default: return `BASE${base}`;
   }
 }
-
-converter("ABCDF", 16, 2);
