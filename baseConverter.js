@@ -10,14 +10,16 @@ function converterClick() {
 function aritimeticaClick() {
   const input1 = document.getElementById("inputA_aritimetica").value;
   const input2 = document.getElementById("inputB_aritimetica").value;
-  const base = document.getElementById("base").value;
+  const base1 = document.getElementById("base1").value;
+  const base2 = document.getElementById("base2").value;
+  const base3 = document.getElementById("base3").value;
   const operacao = document.getElementById("operacao").value;
-  console.log(aritimetica(input1, input2, operacao, base));
+  console.log(aritimetica(input1, input2, operacao, base1, base2, base3));
 }
 
-function aritimetica(input1, input2, operacao, base) {
-  let input1Decimal = paraDecimal(input1, base);
-  let input2Decimal = paraDecimal(input2, base);
+function aritimetica(input1, input2, operacao, base1, base2, base3) {
+  let input1Decimal = paraDecimal(input1, base1);
+  let input2Decimal = paraDecimal(input2, base2);
   let resultado = 0;
   if (operacao == "+") {
     resultado = input1Decimal + input2Decimal;
@@ -28,9 +30,10 @@ function aritimetica(input1, input2, operacao, base) {
   } else if (operacao == "/") {
     resultado = input1Decimal / input2Decimal;
   }
+  resultado = paraNovaBase(Math.floor(resultado), base3);
   console.log(input1Decimal, operacao, input2Decimal, " = ", resultado);
   //RESULTADO COM PONTO FLUTUANTE? COMO FAZ ISSO??????
-  return paraNovaBase(Math.floor(resultado), base);
+  return resultado;
 }
 
 function converter(input = 0, base_origem, base_final) {
