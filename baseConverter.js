@@ -35,7 +35,7 @@ function aritimetica(input1, input2, operacao, base1, base2, base3) {
   //RESULTADO COM PONTO FLUTUANTE? COMO FAZ ISSO??????
   return resultado;
 }
-
+aaaaaaaaaaaa;
 function converter(input = 0, base_origem, base_final) {
   let decimal = 0;
   let passosDecimal = "";
