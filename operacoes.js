@@ -1,0 +1,35 @@
+function aritimeticaClick() {
+    const input1 = document.getElementById("inputA_aritimetica").value;
+    const input2 = document.getElementById("inputB_aritimetica").value;
+    const base1 = document.getElementById("base1").value;
+    const base2 = document.getElementById("base2").value;
+    const base3 = document.getElementById("base3").value;
+    const operacao = document.getElementById("operacao").value;
+    console.log(aritimetica(input1, input2, operacao, base1, base2, base3));
+  }
+  
+  function aritimetica(input1, input2, operacao, base1, base2, base3) {
+    if (input1 == null || input2 == null || operacao == null || base1 == null || base2 == null || base3 == null) {
+      throw new Error("Numero indefinido");
+    }
+    let input1Decimal = paraDecimal(input1, base1);
+    let input2Decimal = paraDecimal(input2, base2);
+    let resultado = 0;
+    if (operacao == "+") {
+      resultado = input1Decimal + input2Decimal;
+    } else if (operacao == "-") {
+      resultado = input1Decimal - input2Decimal;
+    } else if (operacao == "*") {
+      resultado = input1Decimal * input2Decimal;
+    } else if (operacao == "/") {
+      if (input2Decimal == 0) {
+        throw new Error("Divisao por zero");
+      }
+      resultado = input1Decimal / input2Decimal;
+    }
+    resultado = paraNovaBase(resultado, base3);
+    console.log(input1Decimal, operacao, input2Decimal, " = ", resultado);
+    //RESULTADO COM PONTO FLUTUANTE? COMO FAZ ISSO??????
+    return resultado;
+  }
+  
