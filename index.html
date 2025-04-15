@@ -1,40 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Conversor de Bases</title>
-  <style type="text/css"rel="stylesheet" href="style.css"></style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Conversor de Bases</title>
+    <style type="text/css" rel="stylesheet" href="style.css"></style>
+  </head>
+  <body>
+    <h1>Conversor de Bases</h1>
 
-  <h1>Conversor de Bases</h1>
+    <div class="container">
+      <label for="input">Número:</label>
+      <input type="text" id="input" placeholder="Ex: ABCDF" />
 
-  <div class="container">
-    <label for="input">Número:</label>
-    <input type="text" id="input" placeholder="Ex: ABCDF">
+      <label for="baseOrigem">Base de Origem:</label>
+      <select id="baseOrigem">
+        <option value="2">BIN (2)</option>
+        <option value="8">OCT (8)</option>
+        <option value="10" selected>DEC (10)</option>
+        <option value="16">HEX (16)</option>
+      </select>
 
-    <label for="baseOrigem">Base de Origem:</label>
-    <select id="baseOrigem">
-      <option value="2">BIN (2)</option>
-      <option value="8">OCT (8)</option>
-      <option value="10" selected>DEC (10)</option>
-      <option value="16">HEX (16)</option>
-    </select>
+      <label for="baseDestino">Base de Destino:</label>
+      <select id="baseDestino">
+        <option value="2" selected>BIN (2)</option>
+        <option value="8">OCT (8)</option>
+        <option value="10">DEC (10)</option>
+        <option value="16">HEX (16)</option>
+      </select>
 
-    <label for="baseDestino">Base de Destino:</label>
-    <select id="baseDestino">
-      <option value="2" selected>BIN (2)</option>
-      <option value="8">OCT (8)</option>
-      <option value="10">DEC (10)</option>
-      <option value="16">HEX (16)</option>
-    </select>
+      <button onclick="converterClick()">Converter</button>
 
-    <button onclick="converterClick()">Converter</button>
+      <pre id="resultado"></pre>
+    </div>
+    <div class="container">
+      <label for="inputA_aritimetica">Número:</label>
+      <input type="text" id="inputA_aritimetica" placeholder="Ex: ABCDF" />
 
-    <pre id="resultado"></pre>
-  </div>
+      <select id="operacao">
+        <option value="+" selected>+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
 
-  <script src="baseConverter.js" type="text/javascript" charset="utf-8"></script>
+      <label for="inputB_aritimetica">Número:</label>
+      <input type="text" id="inputB_aritimetica" placeholder="Ex: ABCDF" />
 
-</body>
+      <select id="base">
+        <option value="2" selected>BIN (2)</option>
+        <option value="8">OCT (8)</option>
+        <option value="10">DEC (10)</option>
+        <option value="16">HEX (16)</option>
+      </select>
+
+      <button onclick="aritimeticaClick()">Converter</button>
+    </div>
+
+    <script src="baseConverter.js" type="text/javascript" charset="utf-8"></script>
+  </body>
 </html>

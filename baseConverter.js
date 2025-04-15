@@ -3,8 +3,34 @@ function converterClick() {
   const base_origem = parseInt(document.getElementById("baseOrigem").value);
   const base_final = parseInt(document.getElementById("baseDestino").value);
 
-  document.getElementById("resultado").textContent = ""; 
+  document.getElementById("resultado").textContent = "";
   converter(input, base_origem, base_final);
+}
+
+function aritimeticaClick() {
+  const input1 = document.getElemkkentById("inputA_aritimetica").value;
+  const input2 = document.getElementById("inputB_aritimetica").value;
+  const base = document.getElementById("base").value;
+  const operacao = document.getElementById("operacao").value;
+  console.log(aritimetica(input1, input2, operacao, base));
+}
+
+function aritimetica(input1, input2, operacao, base) {
+  let input1Decimal = paraDecimal(input1, base);
+  let input2Decimal = paraDecimal(input2, base);
+  let resultado = 0;
+  if (operacao == "+") {
+    resultado = input1Decimal + input2Decimal;
+  } else if (operacao == "-") {
+    resultado = input1Decimal - input2Decimal;
+  } else if (operacao == "*") {
+    resultado = input1Decimal * input2Decimal;
+  } else if (operacao == "/") {
+    resultado = input1Decimal / input2Decimal;
+  }
+  console.log(input1Decimal, operacao, input2Decimal, " = ", resultado);
+  //RESULTADO COM PONTO FLUTUANTE? COMO FAZ ISSO??????
+  return paraNovaBase(Math.floor(resultado), base);
 }
 
 function converter(input = 0, base_origem, base_final) {
@@ -65,7 +91,7 @@ function paraNovaBase(input, base, mostrarPassos = false, output = []) {
     if (mostrarPassos) {
       output.push(`${quociente} / ${base} = ${Math.floor(quociente / base)}, resto = ${resto}`);
     }
-    let tmp = base === 16 ? hexDigits[resto] : resto;
+    let tmp = base == 16 ? hexDigits[resto] : resto;
     resultado = tmp + resultado;
     quociente = Math.floor(quociente / base);
   } while (quociente > 0);
@@ -75,10 +101,15 @@ function paraNovaBase(input, base, mostrarPassos = false, output = []) {
 
 function label(base) {
   switch (base) {
-    case 2: return "BIN";
-    case 8: return "OCT";
-    case 10: return "DEC";
-    case 16: return "HEX";
-    default: return `BASE${base}`;
+    case 2:
+      return "BIN";
+    case 8:
+      return "OCT";
+    case 10:
+      return "DEC";
+    case 16:
+      return "HEX";
+    default:
+      return `BASE${base}`;
   }
 }
