@@ -8,7 +8,7 @@ function converterClick() {
 }
 
 function aritimeticaClick() {
-  const input1 = document.getElemkkentById("inputA_aritimetica").value;
+  const input1 = document.getElementById("inputA_aritimetica").value;
   const input2 = document.getElementById("inputB_aritimetica").value;
   const base = document.getElementById("base").value;
   const operacao = document.getElementById("operacao").value;
