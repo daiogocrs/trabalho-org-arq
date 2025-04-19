@@ -1,14 +1,34 @@
+/* Reset e fontes */
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f0f4f8;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
 }
 
-h1 {
-  color: #333;
+header {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+header h1 {
+  margin-bottom: 0.5rem;
+}
+
+header button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+header button:hover {
+  background: #444;
 }
 
 .container-wrapper {
@@ -16,29 +36,29 @@ h1 {
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2rem;
+  padding: 2rem;
 }
 
 .container {
-  background: white;
+  background: #fff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 40%; 
-  min-width: 320px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  min-width: 300px;
   transition: all 0.3s ease;
 }
 
-
-.container h1 {
+.container h2 {
   margin-top: 0;
   text-align: center;
+  color: #007BFF;
 }
 
 label {
   display: block;
   margin-top: 1rem;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 input,
@@ -48,8 +68,9 @@ button {
   padding: 0.5rem;
   margin-top: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
   border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 button {
@@ -72,17 +93,10 @@ pre {
   white-space: pre-wrap;
   margin-top: 1.5rem;
   font-size: 0.95rem;
+  color: #222;
 }
 
-input:focus,
-select:focus {
-  outline: none;
-  border-color: #007BFF;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
-}
-
-/* modo escuro */
-
+/* Dark mode */
 body.dark {
   background: #1e1e1e;
   color: #eee;
@@ -103,4 +117,33 @@ body.dark button {
 body.dark pre {
   background: #444;
   color: #ddd;
+}
+
+.dark-mode-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-btn:hover {
+  background: #444;
+}
+
+body.dark .dark-mode-btn {
+  background: #eee;
+  color: #111;
 }
