@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Conversor de Bases</title>
-    <style type="text/css" rel="stylesheet" href="style.css"></style>
-  </head>
-  <body>
-    <h1>Conversor de Bases 🐯</h1>
 
+<head>
+  <meta charset="UTF-8" />
+  <title>Conversor de Bases</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <button onclick="toggleDarkMode()">🌙 Modo Escuro</button>
+
+  <div class="container-wrapper">
+    <!-- Conversor de Bases -->
     <div class="container">
+      <h1>Conversor de Bases 🐯</h1>
+
       <label for="input">Número:</label>
       <input type="text" id="input" placeholder="Ex: ABCDF" />
 
@@ -29,11 +35,14 @@
       </select>
 
       <button onclick="converterClick()">Converter</button>
-
       <pre id="resultado"></pre>
     </div>
+
+    <!-- Operação de Bases -->
     <div class="container">
-      <label for="inputA_aritimetica">Número:</label>
+      <h1>Operação de Bases 🐯</h1>
+
+      <label for="inputA_aritimetica">Número 1:</label>
       <input type="text" id="inputA_aritimetica" placeholder="Ex: ABCDF" />
 
       <select id="base1">
@@ -50,7 +59,7 @@
         <option value="/">/</option>
       </select>
 
-      <label for="inputB_aritimetica">Número:</label>
+      <label for="inputB_aritimetica">Número 2:</label>
       <input type="text" id="inputB_aritimetica" placeholder="Ex: ABCDF" />
 
       <select id="base2">
@@ -59,17 +68,26 @@
         <option value="10">DEC (10)</option>
         <option value="16">HEX (16)</option>
       </select>
-
+      
       <select id="base3">
         <option value="2" selected>BIN (2)</option>
         <option value="8">OCT (8)</option>
         <option value="10">DEC (10)</option>
         <option value="16">HEX (16)</option>
       </select>
-      <button onclick="aritimeticaClick()">Converter</button>
-    </div>
 
-    <script src="conversao.js" type="text/javascript" charset="utf-8"></script>
-    <script src="operacoes.js" type="text/javascript" charset="utf-8"></script>
-  </body>
+      <button onclick="aritimeticaClick()">Converter</button>
+      <pre id="resultado_operacao"></pre>
+    </div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+  <script src="conversao.js" type="text/javascript" charset="utf-8"></script>
+  <script src="operacoes.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
 </html>
