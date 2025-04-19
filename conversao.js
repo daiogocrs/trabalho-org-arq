@@ -25,7 +25,15 @@ function converter(input, base_origem, base_final, usarComplemento = false) {
     }
 
     output.push(`Passos para converter DEC(${decimal}) para ${label(base_final)}:`);
-    let resultado = paraNovaBase(decimal, base_final, true, output);
+
+    let resultado;
+    if (base_final === 2 && usarComplemento && decimal < 0) {
+      resultado = decimalParaComplementoDeDois(decimal, 8);
+      output.push(`Usando complemento de dois (8 bits):`);
+    } else {
+      resultado = paraNovaBase(decimal, base_final, true, output);
+    }
+
     output.push(`\n=> ${label(base_final)}(${resultado})`);
     document.getElementById("resultado").textContent = output.join("\n");
   }
@@ -134,6 +142,13 @@ function paraNovaBase(input, base, mostrarPassos = false, output = []) {
   }
 
   return isNegative ? "-" + resultado : resultado;
+}
+
+function decimalParaComplementoDeDois(decimal, bits = 8) {
+  if (decimal >= 0) return decimal.toString(2).padStart(bits, "0");
+
+  const complemento = (Math.pow(2, bits) + decimal).toString(2);
+  return complemento.slice(-bits);
 }
 
 function label(base) {
