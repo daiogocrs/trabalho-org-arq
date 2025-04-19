@@ -35,6 +35,5 @@ function aritimetica(input1, input2, operacao, base1, base2, base3) {
   }
   resultado = paraNovaBase(resultado, base3);
   console.log(input1Decimal, operacao, input2Decimal, " = ", resultado);
-  //RESULTADO COM PONTO FLUTUANTE? COMO FAZ ISSO??????
   return resultado;
 }
