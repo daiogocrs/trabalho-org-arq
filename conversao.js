@@ -165,3 +165,64 @@ function label(base) {
       return `BASE${base}`;
   }
 }
+
+const baseOrigemSelect = document.getElementById("baseOrigem");
+const tecladoContainer = document.getElementById("teclado-conversao");
+const telaConversao = document.getElementById("tela-conversao");
+const inputOculto = document.getElementById("input");
+
+const botoesPorBase = {
+  2: ["0", "1"],
+  8: ["0", "1", "2", "3", "4", "5", "6", "7"],
+  10: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  16: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+};
+
+function atualizarTeclado() {
+  const base = parseInt(baseOrigemSelect.value);
+  const teclas = botoesPorBase[base];
+  tecladoContainer.innerHTML = "";
+
+  teclas.forEach(valor => {
+    const btn = document.createElement("button");
+    btn.textContent = valor;
+    btn.onclick = () => adicionarChar(valor);
+    tecladoContainer.appendChild(btn);
+  });
+
+  const backspace = document.createElement("button");
+  backspace.textContent = "←";
+  backspace.onclick = () => {
+    inputOculto.value = inputOculto.value.slice(0, -1);
+    atualizarTela();
+  };
+  tecladoContainer.appendChild(backspace);
+
+  const clear = document.createElement("button");
+  clear.textContent = "C";
+  clear.onclick = () => {
+    inputOculto.value = "";
+    atualizarTela();
+  };
+  tecladoContainer.appendChild(clear);
+}
+
+function adicionarChar(char) {
+  inputOculto.value += char;
+  atualizarTela();
+}
+
+function atualizarTela() {
+  telaConversao.textContent = inputOculto.value || "0";
+}
+
+baseOrigemSelect.addEventListener("change", () => {
+  inputOculto.value = "";
+  atualizarTela();
+  atualizarTeclado();
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  atualizarTeclado();
+  atualizarTela();
+});

@@ -147,3 +147,51 @@ body.dark .dark-mode-btn {
   background: #eee;
   color: #111;
 }
+
+.display-box {
+  font-size: 1.5rem;
+  background: #eaeaea;
+  padding: 1rem;
+  text-align: right;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  min-height: 2.5rem;
+  overflow-x: auto;
+}
+
+body.dark .display-box {
+  background: #333;
+  color: white;
+  border-color: #555;
+}
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.teclado button {
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.teclado button:hover {
+  background-color: #aaa;
+}
+
+body.dark .teclado button {
+  background-color: #555;
+  color: white;
+}
+
+body.dark .teclado button:hover {
+  background-color: #777;
+}
