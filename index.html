@@ -56,14 +56,38 @@
       <fieldset>
         <legend>Operações com Bases</legend>
 
-        <label for="tela-operacoes">Resultado:</label>
-        <div id="tela-operacoes" class="display-box">0</div>
+        <label for="inputA_aritimetica">Número A:</label>
+        <input type="text" id="inputA_aritimetica" placeholder="Ex: A2" />
 
-        <div class="teclado" id="teclado-operacoes"></div>
-        <input type="hidden" id="input_operacoes" />
+        <label for="base1">Base de A:</label>
+        <select id="base1">
+          <option value="2">BIN (2)</option>
+          <option value="8">OCT (8)</option>
+          <option value="10" selected>DEC (10)</option>
+          <option value="16">HEX (16)</option>
+        </select>
 
-        <label for="baseOP">Base das operações:</label>
-        <select id="baseOP">
+        <label for="operacao">Operação:</label>
+        <select id="operacao">
+          <option value="+" selected>+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+
+        <label for="inputB_aritimetica">Número B:</label>
+        <input type="text" id="inputB_aritimetica" placeholder="Ex: 3F" />
+
+        <label for="base2">Base de B:</label>
+        <select id="base2">
+          <option value="2">BIN (2)</option>
+          <option value="8">OCT (8)</option>
+          <option value="10" selected>DEC (10)</option>
+          <option value="16">HEX (16)</option>
+        </select>
+
+        <label for="base3">Base do Resultado:</label>
+        <select id="base3">
           <option value="2">BIN (2)</option>
           <option value="8">OCT (8)</option>
           <option value="10" selected>DEC (10)</option>
@@ -74,6 +98,7 @@
         <pre id="resultado_operacao"></pre>
       </fieldset>
     </section>
+
   </main>
 
   <footer class="site-footer">
