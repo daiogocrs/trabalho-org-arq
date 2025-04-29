@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Conversor e Operações de Bases</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>🧮 Conversor e Operações de Bases</h1>
-    </header>
-    <main class="container-wrapper">
-      <!-- Conversão -->
-      <section class="container">
-        <h2>Conversão de Bases</h2>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Conversor e Operações de Bases</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>🧮 Conversor e Operações de Bases</h1>
+  </header>
+  <button type="button" id="btnToggle" onclick="toggleSections()">Mostrar Operações</button>
+  <main class="container-wrapper">
+    <!-- Conversão -->
+    <section class="container" id="conversao">
+      <fieldset>
+        <legend>Conversão de Bases</legend>
+
         <label for="input">Número:</label>
         <div id="tela-conversao" class="display-box">0</div>
         <div class="teclado" id="teclado-conversao"></div>
         <input type="hidden" id="input" />
-
 
         <label for="baseOrigem">Base de Origem:</label>
         <select id="baseOrigem">
@@ -26,7 +30,11 @@
           <option value="10" selected>DEC (10)</option>
           <option value="16">HEX (16)</option>
         </select>
-        <label> <input type="checkbox" id="usarComplemento" /> Complemento de dois ?</label>
+
+        <label>
+          <input type="checkbox" id="usarComplemento" /> Complemento de dois?
+        </label>
+
         <label for="baseDestino">Base de Destino:</label>
         <select id="baseDestino">
           <option value="2" selected>BIN (2)</option>
@@ -35,13 +43,16 @@
           <option value="16">HEX (16)</option>
         </select>
 
-        <button onclick="converterClick()">Converter</button>
+        <button type="button" onclick="converterClick()">Converter</button>
         <pre id="resultado"></pre>
-      </section>
+      </fieldset>
+    </section>
 
-      <!-- Operações -->
-      <section class="container">
-        <h2>Operações com Bases</h2>
+    <!-- Operações -->
+    <section class="container" id="operacoes">
+      <fieldset>
+        <legend>Operações com Bases</legend>
+
         <label for="inputA_aritimetica">Número A:</label>
         <input type="text" id="inputA_aritimetica" placeholder="Ex: A2" />
 
@@ -80,18 +91,53 @@
           <option value="16">HEX (16)</option>
         </select>
 
-        <button onclick="aritimeticaClick()">Calcular</button>
-
+        <button type="button" onclick="aritimeticaClick()">Calcular</button>
         <pre id="resultado_operacao"></pre>
-      </section>
-      <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙</button>
-    </main>
-    <script>
-      function toggleDarkMode() {
-        document.body.classList.toggle("dark");
+      </fieldset>
+    </section>
+
+    <button type="button" class="dark-mode-btn" onclick="toggleDarkMode()">
+      <span id="dark-mode-icon">🌙</span>
+    </button>
+  </main>
+
+  <script>
+    // Função para alternar entre as seções
+    function toggleSections() {
+      const conversaoSection = document.getElementById("conversao");
+      const operacoesSection = document.getElementById("operacoes");
+      const btnToggle = document.getElementById("btnToggle");
+
+      if (conversaoSection.style.display === "none") {
+        conversaoSection.style.display = "block";
+        operacoesSection.style.display = "none";
+        btnToggle.textContent = "Mostrar Operações";
+        btnToggle.classList.remove('operacoes');
+        btnToggle.classList.add('conversao');
+      } else {
+        conversaoSection.style.display = "none";
+        operacoesSection.style.display = "block";
+        btnToggle.textContent = "Mostrar Conversão";
+        btnToggle.classList.remove('conversao');
+        btnToggle.classList.add('operacoes');
       }
-    </script>
-    <script src="conversao.js"></script>
-    <script src="operacoes.js"></script>
-  </body>
+    }
+
+    // Função para ativar/desativar o modo escuro
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      const icon = document.getElementById("dark-mode-icon");
+      icon.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+    }
+
+    // Inicializa as seções
+    window.onload = function () {
+      document.getElementById("conversao").style.display = "block";
+      document.getElementById("operacoes").style.display = "none";
+    };
+  </script>
+  <script src="conversao.js"></script>
+  <script src="operacoes.js"></script>
+</body>
+
 </html>

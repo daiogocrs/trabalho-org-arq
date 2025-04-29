@@ -15,9 +15,9 @@ function aritimeticaClick() {
 }
 
 function aritimetica(input1, input2, operacao, base1, base2, base3) {
-  if (input1 == null || input2 == null || operacao == null || base1 == null || base2 == null || base3 == null) {
-    throw new Error("Numero indefinido");
-  }
+  if (!input1 || !input2 || !operacao || !base1 || !base2 || !base3) {
+    throw new Error("Número ou operação indefinidos");
+  }  
   let input1Decimal = paraDecimal(input1, base1);
   let input2Decimal = paraDecimal(input2, base2);
   let resultado = 0;

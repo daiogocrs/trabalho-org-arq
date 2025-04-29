@@ -1,4 +1,4 @@
-/* Reset e fontes */
+/* ===== Reset e Base ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -7,6 +7,7 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+/* ===== Header ===== */
 header {
   text-align: center;
   margin-top: 2rem;
@@ -16,21 +17,7 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
-header button {
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  background: #222;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-header button:hover {
-  background: #444;
-}
-
+/* ===== Containers ===== */
 .container-wrapper {
   display: flex;
   gap: 2rem;
@@ -49,12 +36,27 @@ header button:hover {
   transition: all 0.3s ease;
 }
 
-.container h2 {
+.container h2, legend {
   margin-top: 0;
   text-align: center;
   color: #007BFF;
 }
 
+/* ===== Fieldset ===== */
+fieldset {
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+legend {
+  padding: 0 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* ===== Inputs, Selects e Botões ===== */
 label {
   display: block;
   margin-top: 1rem;
@@ -73,6 +75,13 @@ button {
   box-sizing: border-box;
 }
 
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px #007BFF;
+}
+
 button {
   background-color: #007BFF;
   color: white;
@@ -86,68 +95,7 @@ button:hover {
   background-color: #0056b3;
 }
 
-pre {
-  background: #f7f7f7;
-  padding: 1rem;
-  border-radius: 8px;
-  white-space: pre-wrap;
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
-  color: #222;
-}
-
-/* Dark mode */
-body.dark {
-  background: #1e1e1e;
-  color: #eee;
-}
-
-body.dark .container {
-  background: #2c2c2c;
-}
-
-body.dark input,
-body.dark select,
-body.dark button {
-  background-color: #3a3a3a;
-  color: white;
-  border-color: #555;
-}
-
-body.dark pre {
-  background: #444;
-  color: #ddd;
-}
-
-.dark-mode-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #222;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  cursor: pointer;
-  z-index: 1000;
-  transition: background 0.3s ease;
-}
-
-.dark-mode-btn:hover {
-  background: #444;
-}
-
-body.dark .dark-mode-btn {
-  background: #eee;
-  color: #111;
-}
-
+/* ===== Display Box ===== */
 .display-box {
   font-size: 1.5rem;
   background: #eaeaea;
@@ -160,12 +108,18 @@ body.dark .dark-mode-btn {
   overflow-x: auto;
 }
 
-body.dark .display-box {
-  background: #333;
-  color: white;
-  border-color: #555;
+/* ===== Resultado ===== */
+pre {
+  background: #f7f7f7;
+  padding: 1rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #222;
 }
 
+/* ===== Teclado Virtual ===== */
 .teclado {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -187,6 +141,98 @@ body.dark .display-box {
   background-color: #aaa;
 }
 
+/* ===== Transição para alternar as seções ===== */
+.container-wrapper > .container {
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.container-wrapper > .container.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== Botão Toggle ===== */
+#btnToggle {
+  position: relative;
+  left: 50%; 
+  transform: translateX(-50%);
+  transition: transform 0.5s ease, left 0.5s ease;
+  height: 30%;
+  width: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ===== Botão Dark Mode ===== */
+.dark-mode-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease, transform 0.6s ease;
+}
+
+.dark-mode-btn:hover {
+  background: #444;
+}
+
+.dark-mode-btn:active {
+  transform: rotate(360deg);
+}
+
+/* ===== Dark Mode ===== */
+body.dark {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+body.dark .container {
+  background: #2c2c2c;
+}
+
+body.dark input,
+body.dark select,
+body.dark button {
+  background-color: #3a3a3a;
+  color: white;
+  border-color: #555;
+}
+
+body.dark input:focus,
+body.dark select:focus {
+  border-color: #4da3ff;
+  box-shadow: 0 0 5px #4da3ff;
+}
+
+body.dark pre {
+  background: #444;
+  color: #ddd;
+}
+
+body.dark .display-box {
+  background: #333;
+  color: white;
+  border-color: #555;
+}
+
 body.dark .teclado button {
   background-color: #555;
   color: white;
@@ -194,4 +240,9 @@ body.dark .teclado button {
 
 body.dark .teclado button:hover {
   background-color: #777;
+}
+
+body.dark .dark-mode-btn {
+  background: #eee;
+  color: #111;
 }
