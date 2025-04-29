@@ -31,10 +31,12 @@
           <option value="16">HEX (16)</option>
         </select>
 
-        <label class="checkbox-wrapper" for="usarComplemento">
-          Complemento de dois?
-          <input type="checkbox" id="usarComplemento" name="usarComplemento" />
-        </label>                     
+        <div id="complementoWrapper" style="display: none;">
+          <label class="checkbox-wrapper" for="usarComplemento">
+            Complemento de dois?
+            <input type="checkbox" id="usarComplemento" name="usarComplemento" />
+          </label>
+        </div>
 
         <label for="baseDestino">Base de Destino:</label>
         <select id="baseDestino">
@@ -101,7 +103,7 @@
 
   <footer class="site-footer">
     <p>© 2025 Criado por Diogo Borges Corso, João Vitor Wagner Pereira e Lívia Souza Rech</p>
-  </footer>    
+  </footer>
 
   <button type="button" class="dark-mode-btn" onclick="toggleDarkMode()">
     <span id="dark-mode-icon">🌙</span>
@@ -135,11 +137,19 @@
       const icon = document.getElementById("dark-mode-icon");
       icon.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     }
+    
+    // Mostra ou oculta o campo de complemento de dois conforme a base de origem
+    document.getElementById("baseOrigem").addEventListener("change", function () {
+      const complementoWrapper = document.getElementById("complementoWrapper");
+      complementoWrapper.style.display = this.value === "2" ? "block" : "none";
+    });
 
     // Inicializa as seções
     window.onload = function () {
       document.getElementById("conversao").style.display = "block";
       document.getElementById("operacoes").style.display = "none";
+      document.getElementById("complementoWrapper").style.display =
+      document.getElementById("baseOrigem").value === "2" ? "block" : "none";
     };
   </script>
   <script src="conversao.js"></script>
