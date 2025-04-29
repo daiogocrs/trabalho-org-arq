@@ -2,9 +2,9 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f4f8;
   color: #333;
   transition: background 0.3s, color 0.3s;
+  background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
 }
 
 /* ===== Header ===== */
@@ -64,8 +64,7 @@ label {
 }
 
 input,
-select,
-button {
+select{
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.5rem;
@@ -73,6 +72,18 @@ button {
   border-radius: 8px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  background: linear-gradient(45deg, #007BFF, #0056b3);
 }
 
 input:focus,
@@ -153,13 +164,18 @@ pre {
 
 /* ===== Transição para alternar as seções ===== */
 .container-wrapper > .container {
-  display: none;
-  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, height 0.3s ease;
 }
 
 .container-wrapper > .container.active {
-  display: block;
   opacity: 1;
+  visibility: visible;
+  height: auto;
+  overflow: visible;
 }
 
 /* ===== Botão Toggle ===== */
@@ -171,8 +187,10 @@ pre {
   height: 30%;
   width: auto;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background-color: #007BFF;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  background: linear-gradient(45deg, #007BFF, #0056b3);
   color: white;
   border: none;
   cursor: pointer;
@@ -185,7 +203,6 @@ pre {
   color: white;
   font-size: 0.95rem;
   border-top: 2px solid #0056b3;
-  width: 100%;
   margin-top: 2rem;
 }
 
