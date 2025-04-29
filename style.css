@@ -95,6 +95,16 @@ button:hover {
   background-color: #0056b3;
 }
 
+.checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  width: auto; 
+  white-space: nowrap;
+}
+
 /* ===== Display Box ===== */
 .display-box {
   font-size: 1.5rem;
