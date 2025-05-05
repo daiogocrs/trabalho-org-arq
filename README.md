@@ -5,11 +5,11 @@ Este é um projeto interativo desenvolvido para facilitar a **conversão de núm
 
 ## 🧠 Funcionalidades
 
-- ✅ Conversão entre BIN, OCT, DEC e HEX, com visualização dos passos.
-- 🧮 Operações matemáticas (`+`, `-`, `*`, `/`) entre números de diferentes bases.
-- 🌓 Alternância entre **modo claro e escuro**.
-- 🎛️ Teclado dinâmico que se adapta à base selecionada.
-- 🧾 Suporte a **complemento de dois** (para números binários negativos).
+- Conversão entre BIN, OCT, DEC e HEX, com visualização dos passos.
+- Operações matemáticas (`+`, `-`, `*`, `/`) entre números de diferentes bases.
+- Alternância entre **modo claro e escuro**.
+- Teclado dinâmico que se adapta à base selecionada.
+- Suporte a **complemento de dois** (para números binários negativos).
 
 ## 💻 Como usar
 
