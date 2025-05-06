@@ -32,6 +32,13 @@
           <option value="16">HEX (16)</option>
         </select>
 
+        <div id="complementoWrapper" style="display: none;">
+          <label class="checkbox-wrapper" for="usarComplemento">
+            Complemento de dois?
+            <input type="checkbox" id="usarComplemento"/>
+          </label>
+        </div>
+
         <label for="baseDestino">Base de Destino:</label>
         <select id="baseDestino">
           <option value="2" selected>BIN (2)</option>
@@ -85,7 +92,7 @@
           <option value="2">BIN (2)</option>
           <option value="8">OCT (8)</option>
           <option value="10" selected>DEC (10)</option>
-          <option value="16">HEX (16)</option>  
+          <option value="16">HEX (16)</option>
         </select>
 
         <button type="button" onclick="aritimeticaClick()">Calcular</button>
