@@ -1,10 +1,15 @@
+html, body {
+  height: 100%;
+}
+
 /* ===== Reset e Base ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   transition: background 0.3s, color 0.3s;
-  background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== Header ===== */
@@ -15,9 +20,18 @@ header {
 
 header h1 {
   margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #007BFF, #00c6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 /* ===== Containers ===== */
+main.container-wrapper {
+  flex: 1 0 auto;
+}
+
 .container-wrapper {
   display: flex;
   gap: 2rem;
@@ -34,6 +48,12 @@ header h1 {
   width: 400px;
   min-width: 300px;
   transition: all 0.3s ease;
+  transition: transform 0.3s, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .container h2, legend {
@@ -44,10 +64,11 @@ header h1 {
 
 /* ===== Fieldset ===== */
 fieldset {
-  border: 2px solid #007BFF;
+  border: 2px solid;
   border-radius: 8px;
   padding: 1.5rem;
   margin-top: 1rem;
+  border-image: linear-gradient(45deg, #007BFF, #00c6ff) 1; 
 }
 
 legend {
@@ -184,8 +205,7 @@ pre {
   left: 50%; 
   transform: translateX(-50%);
   transition: transform 0.5s ease, left 0.5s ease;
-  height: 30%;
-  width: auto;
+  width: 30%;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -193,7 +213,8 @@ pre {
   background: linear-gradient(45deg, #007BFF, #0056b3);
   color: white;
   border: none;
-  cursor: pointer;
+  cursor: pointer;  
+  flex-shrink: 0;
 }
 
 .site-footer {
@@ -282,4 +303,45 @@ body.dark .teclado button:hover {
 body.dark .dark-mode-btn {
   background: #eee;
   color: #111;
+}
+
+@media (max-width: 900px) {
+  .container-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 200px;
+  }
+
+  #btnToggle {
+    width: 80%;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  button,
+  input,
+  select {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .display-box {
+    font-size: 1.2rem;
+  }
+
+  .teclado {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
