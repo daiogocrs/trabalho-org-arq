@@ -2,20 +2,18 @@ function converterClick() {
   const input = document.getElementById("input").value.toUpperCase();
   const base_origem = parseInt(document.getElementById("baseOrigem").value);
   const base_final = parseInt(document.getElementById("baseDestino").value);
-  const usarComplemento = document.getElementById("usarComplemento").checked;
   document.getElementById("resultado").textContent = "";
-
-  converter(input, base_origem, base_final, usarComplemento);
+  converter(input, base_origem, base_final);
 }
 
-function converter(input, base_origem, base_final, usarComplemento = false) {
+function converter(input, base_origem, base_final) {
   let decimal = 0;
   let passosDecimal = "";
   const output = [];
 
   if (input != 0) {
     if (base_origem != 10) {
-      decimal = paraDecimal(input, base_origem, usarComplemento);
+      decimal = paraDecimal(input, base_origem);
       passosDecimal = mostrarDecimal(input, base_origem);
       output.push(`\n${label(base_origem)}(${input}) => DEC(${decimal})`);
       output.push(passosDecimal + "\n");
@@ -26,40 +24,24 @@ function converter(input, base_origem, base_final, usarComplemento = false) {
 
     output.push(`Passos para converter DEC(${decimal}) para ${label(base_final)}:`);
 
-    let resultado;
-    if (base_final === 2 && usarComplemento && decimal < 0) {
-      resultado = decimalParaComplementoDeDois(decimal, 8);
-      output.push(`Usando complemento de dois (8 bits):`);
-    } else {
-      resultado = paraNovaBase(decimal, base_final, true, output);
-    }
-
+    let resultado = paraNovaBase(decimal, base_final, true, output);
     output.push(`\n=> ${label(base_final)}(${resultado})`);
     document.getElementById("resultado").textContent = output.join("\n");
   }
 }
 
-function paraDecimal(input, base, usarComplemento = false) {
+function paraDecimal(input, base) {
   input = input.toUpperCase();
   const [parteInteira, parteFracionaria] = input.split(".");
 
   let decimal = 0;
 
-  if (usarComplemento && base === 2 && !parteFracionaria) {
-    const n = parteInteira.length;
-    const isNegativo = parteInteira[0] === "1";
-
-    if (isNegativo) {
-      const decimalPositivo = parseInt(parteInteira, 2);
-      decimal = decimalPositivo - Math.pow(2, n);
-      return decimal;
+  if (parteInteira) {
+    for (let i = 0; i < parteInteira.length; i++) {
+      const valor = parseInt(parteInteira[i], base);
+      const expoente = parteInteira.length - 1 - i;
+      decimal += valor * Math.pow(base, expoente);
     }
-  }
-
-  for (let i = 0; i < parteInteira.length; i++) {
-    const valor = parseInt(parteInteira[i], base);
-    const expoente = parteInteira.length - 1 - i;
-    decimal += valor * Math.pow(base, expoente);
   }
 
   if (parteFracionaria) {
@@ -74,9 +56,7 @@ function paraDecimal(input, base, usarComplemento = false) {
 }
 
 function mostrarDecimal(input, base) {
-  const isNegative = input[0] === "-";
-  if (isNegative) input = input.slice(1);
-
+  input = input.toUpperCase();
   const [parteInteira, parteFracionaria] = input.split(".");
 
   let passos = "";
@@ -96,14 +76,13 @@ function mostrarDecimal(input, base) {
     }
   }
 
-  return isNegative ? "-(" + passos + ")" : passos;
+  return passos;
 }
 
 function paraNovaBase(input, base, mostrarPassos = false, output = []) {
   const hexDigits = "0123456789ABCDEF";
   let resultado = "";
 
-  const isNegative = input < 0;
   input = Math.abs(input);
 
   let inteiro = Math.floor(input);
@@ -141,14 +120,7 @@ function paraNovaBase(input, base, mostrarPassos = false, output = []) {
     }
   }
 
-  return isNegative ? "-" + resultado : resultado;
-}
-
-function decimalParaComplementoDeDois(decimal, bits = 8) {
-  if (decimal >= 0) return decimal.toString(2).padStart(bits, "0");
-
-  const complemento = (Math.pow(2, bits) + decimal).toString(2);
-  return complemento.slice(-bits);
+  return resultado;
 }
 
 function label(base) {
@@ -189,6 +161,11 @@ function atualizarTeclado() {
     btn.onclick = () => adicionarChar(valor);
     tecladoContainer.appendChild(btn);
   });
+
+  const ponto = document.createElement("button");
+  ponto.textContent = ".";
+  ponto.onclick = () => adicionarChar(".");
+  tecladoContainer.appendChild(ponto);
 
   const backspace = document.createElement("button");
   backspace.textContent = "←";
