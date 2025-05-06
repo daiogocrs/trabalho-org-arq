@@ -13,6 +13,12 @@ function converter(input, base_origem, base_final, usarComplemento = false) {
   let passosDecimal = "";
   const output = [];
 
+  if (usarComplemento && input.includes(".")) {
+    document.getElementById("resultado").textContent = 
+      "⚠️ Não é possível usar complemento de dois com números de ponto flutuante.";
+    return;
+  }
+
   if (input != 0) {
     if (base_origem != 10) {
       decimal = paraDecimal(input, base_origem, usarComplemento);
@@ -56,12 +62,14 @@ function paraDecimal(input, base, usarComplemento = false) {
     }
   }
 
+  // Parte inteira
   for (let i = 0; i < parteInteira.length; i++) {
     const valor = parseInt(parteInteira[i], base);
     const expoente = parteInteira.length - 1 - i;
     decimal += valor * Math.pow(base, expoente);
   }
 
+  // Parte fracionária
   if (parteFracionaria) {
     for (let i = 0; i < parteFracionaria.length; i++) {
       const valor = parseInt(parteFracionaria[i], base);
@@ -190,6 +198,12 @@ function atualizarTeclado() {
     tecladoContainer.appendChild(btn);
   });
 
+  // Adiciona o ponto no teclado para números fracionários
+  const ponto = document.createElement("button");
+  ponto.textContent = ".";
+  ponto.onclick = () => adicionarChar(".");
+  tecladoContainer.appendChild(ponto);
+
   const backspace = document.createElement("button");
   backspace.textContent = "←";
   backspace.onclick = () => {
@@ -208,6 +222,9 @@ function atualizarTeclado() {
 }
 
 function adicionarChar(char) {
+  // Impede a inserção de múltiplos pontos
+  if (char === "." && inputOculto.value.includes(".")) return;
+
   inputOculto.value += char;
   atualizarTela();
 }
