@@ -37,4 +37,4 @@ Este é um projeto interativo desenvolvido para facilitar a **conversão de núm
 
 ## Preview
 
-> Abra `index.html` no navegador para ver o projeto funcionando!
+> Abra `index.html` no navegador para ver o projeto funcionando ou acesse o link: https://daiogocrs.github.io/trabalho-org-arq/
